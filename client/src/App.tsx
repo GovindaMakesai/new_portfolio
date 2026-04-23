@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import { AnimatePresence, motion } from "framer-motion";
-import gsap from "gsap";
 import { Sparkles, Send, BrainCircuit } from "lucide-react";
 import { fallbackProjects } from "./data/projects";
 import type { Project, ProjectCategory } from "./types";
@@ -9,7 +8,7 @@ import type { Project, ProjectCategory } from "./types";
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const words = ["MERN Engineer", "Experience Architect", "Interaction Designer"];
-const profilePhoto = "https://i.pravatar.cc/400?img=47";
+const profilePhoto = "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80";
 const imageFallback = "https://picsum.photos/seed/fallback-poster/420/420";
 
 const useSmoothScroll = () => {
@@ -34,21 +33,6 @@ function App() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
   const [notice, setNotice] = useState("");
-  const heroRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const cursor = document.createElement("div");
-    cursor.className = "custom-cursor";
-    document.body.appendChild(cursor);
-    const move = (event: MouseEvent) => {
-      cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
-    };
-    window.addEventListener("mousemove", move);
-    return () => {
-      window.removeEventListener("mousemove", move);
-      cursor.remove();
-    };
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -84,25 +68,6 @@ function App() {
     [activeFilter, projects]
   );
 
-  useEffect(() => {
-    if (!heroRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(".hero-float", {
-        y: -14,
-        duration: 2.5,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-      gsap.fromTo(
-        ".project-card",
-        { opacity: 0.4, y: 22 },
-        { opacity: 1, y: 0, stagger: 0.06, duration: 0.8, ease: "power3.out" }
-      );
-    }, heroRef);
-    return () => ctx.revert();
-  }, [filtered.length]);
-
   const submitContact = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
@@ -124,10 +89,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#06070b] text-zinc-100">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(23,196,255,0.16),transparent_45%),radial-gradient(circle_at_85%_10%,rgba(206,120,255,0.18),transparent_40%),radial-gradient(circle_at_50%_80%,rgba(123,255,171,0.12),transparent_50%)]" />
+    <div className="min-h-screen bg-[#05060a] text-zinc-100">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(39,214,255,0.15),transparent_35%),radial-gradient(circle_at_90%_5%,rgba(192,118,255,0.15),transparent_36%),radial-gradient(circle_at_50%_80%,rgba(77,255,188,0.1),transparent_44%)]" />
       <main className="relative mx-auto max-w-7xl px-6 pb-24 md:px-12">
-        <header className="sticky top-5 z-40 mb-4">
+        <header className="sticky top-5 z-40 mb-6">
           <nav className="nav-shell">
             <div className="flex items-center gap-3">
               <span className="brand-dot" />
@@ -152,35 +117,69 @@ function App() {
           </nav>
         </header>
 
-        <section id="home" ref={heroRef} className="relative flex min-h-screen flex-col justify-center gap-8">
-          <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cyan-200">
-            <Sparkles size={14} /> Pooja Mourya Portfolio OS
+        <section id="home" className="relative flex min-h-screen flex-col justify-center gap-8">
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cyan-200"
+          >
+            <Sparkles size={14} /> Premium Portfolio Experience
           </motion.p>
-          <div className="grid items-center gap-8 sm:grid-cols-[1.15fr,0.85fr]">
-            <div>
-              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="hero-float max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">
-                Building brand-grade digital products with
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr,0.95fr]">
+            <div className="space-y-6">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08 }}
+                className="max-w-4xl text-5xl font-semibold leading-tight md:text-7xl"
+              >
+                I craft magnetic product journeys with
                 <span className="block bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent">
                   {typed}
                   <span className="ml-1 animate-pulse text-zinc-200">|</span>
                 </span>
               </motion.h1>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="mt-4 max-w-2xl text-zinc-300 md:text-lg">
-                Senior MERN developer crafting immersive commerce and product experiences that balance speed,
-                beauty, and business outcomes.
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="max-w-2xl text-zinc-300 md:text-lg"
+              >
+                Senior MERN product engineer focused on high-conversion experiences, smooth motion systems,
+                and scalable full-stack architecture.
               </motion.p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {[
+                  ["40+", "Projects Shipped"],
+                  ["95%", "Client Retention"],
+                  ["A+", "UX Precision"],
+                ].map(([value, label]) => (
+                  <div key={label} className="metric-card">
+                    <p className="text-2xl font-semibold text-white">{value}</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-zinc-300">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="profile-card">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 18 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.16 }}
+              className="profile-card"
+            >
               <img
                 src={profilePhoto}
                 alt="Pooja Mourya profile"
-                className="h-72 w-full rounded-2xl object-cover"
+                className="h-[24rem] w-full rounded-2xl object-cover"
                 onError={(e) => {
                   e.currentTarget.src = imageFallback;
                 }}
               />
-              <p className="mt-4 text-sm uppercase tracking-[0.2em] text-cyan-200">Product Engineer</p>
+              <p className="mt-4 text-sm uppercase tracking-[0.2em] text-cyan-200">Senior Product Engineer</p>
               <h3 className="text-2xl font-semibold">Pooja Mourya</h3>
+              <p className="mt-2 text-sm text-zinc-300">
+                MERN specialist building interfaces that feel luxurious, intelligent, and lightning smooth.
+              </p>
             </motion.div>
           </div>
         </section>
@@ -230,7 +229,7 @@ function App() {
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Project Cinema</p>
-              <h2 className="section-title">A living portfolio system.</h2>
+              <h2 className="section-title">Selected web experiences.</h2>
             </div>
             <div className="flex gap-2">
               {(["All", "Web Design", "Development"] as const).map((filter) => (
@@ -240,7 +239,7 @@ function App() {
               ))}
             </div>
           </div>
-          <div className="horizontal-strip pb-6">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {filtered.map((project) => (
                 <motion.article
@@ -249,7 +248,7 @@ function App() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, y: 20 }}
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -5, scale: 1.01 }}
                   className="project-card"
                   onClick={() => setActiveProject(project)}
                 >
@@ -257,7 +256,7 @@ function App() {
                     src={project.image}
                     alt={project.name}
                     loading="lazy"
-                    className="mb-4 h-28 w-28 rounded-2xl object-cover"
+                    className="mb-4 h-52 w-full rounded-2xl object-cover"
                     onError={(e) => {
                       e.currentTarget.src = imageFallback;
                     }}

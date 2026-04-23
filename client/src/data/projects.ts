@@ -1,7 +1,7 @@
 import type { Project } from "../types";
 
 const websiteShot = (url: string) =>
-  `https://image.thum.io/get/width/1200/noanimate/${encodeURIComponent(url)}`;
+  `https://image.thum.io/get/width/760/noanimate/${encodeURIComponent(url)}`;
 
 export const fallbackProjects: Project[] = [
   { name: "Anvi Couture", liveUrl: "https://anvicouture.com", image: websiteShot("https://anvicouture.com"), videoPreview: websiteShot("https://anvicouture.com"), category: "Web Design", summary: "Luxury-first ecommerce experience with editorial storytelling.", stack: ["React", "GSAP", "Tailwind"] },
