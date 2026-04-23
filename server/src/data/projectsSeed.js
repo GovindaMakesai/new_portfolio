@@ -19,8 +19,8 @@ const projectsSeed = [
 module.exports = projectsSeed.map(([name, liveUrl, _domain, category], index) => ({
   name,
   liveUrl,
-  image: `https://image.thum.io/get/width/760/noanimate/${encodeURIComponent(liveUrl)}`,
-  videoPreview: `https://image.thum.io/get/width/760/noanimate/${encodeURIComponent(liveUrl)}`,
+  image: `https://picsum.photos/seed/${encodeURIComponent(`server-${name}`)}/900/600`,
+  videoPreview: `https://picsum.photos/seed/${encodeURIComponent(`server-${name}-video`)}/1200/720`,
   category,
   summary: `Premium digital product crafted for ${name} with conversion-focused storytelling and fluid interactions.`,
   stack: index % 2 ? ["React", "Node.js", "MongoDB"] : ["Tailwind", "GSAP", "Framer Motion"],

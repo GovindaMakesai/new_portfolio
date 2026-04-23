@@ -186,6 +186,20 @@ html {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.step-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  padding: 1.1rem;
+}
+
+.impact-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), rgba(8, 11, 20, 0.9) 55%);
+  padding: 1.3rem;
+}
+
 main section {
   contain: layout paint style;
 }

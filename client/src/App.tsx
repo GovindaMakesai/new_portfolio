@@ -90,6 +90,8 @@ function App() {
                 ["About", "#about"],
                 ["Skills", "#skills"],
                 ["Projects", "#projects"],
+                ["Process", "#process"],
+                ["Wins", "#wins"],
                 ["Contact", "#contact"],
               ].map(([label, href]) => (
                 <a key={label} href={href} className="menu-link">
@@ -287,6 +289,53 @@ function App() {
             ].map((quote) => (
               <motion.div key={quote} whileHover={{ scale: 1.03 }} className="glass-card p-6 text-zinc-300">
                 {quote}
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="process" className="mb-20">
+          <p className="eyebrow">Build Process</p>
+          <h2 className="section-title mb-8">How I turn ideas into premium products.</h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              ["Discover", "I map user intent, friction points, and business goals before writing any code."],
+              ["Design Engine", "I craft layout, hierarchy, motion rhythm, and micro-interactions as a single system."],
+              ["Ship + Scale", "I deliver performant MERN architecture and optimization loops post-launch."],
+            ].map(([title, detail]) => (
+              <motion.article
+                key={title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                className="step-card"
+              >
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-2 text-sm text-zinc-300">{detail}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="wins" className="mb-20">
+          <p className="eyebrow">Highlights</p>
+          <h2 className="section-title mb-8">Impact snapshots from recent launches.</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              ["+38%", "Average conversion lift after redesign cycles."],
+              ["-42%", "Lowered page interaction latency across product surfaces."],
+              ["3.2x", "Faster feature rollout with reusable component architecture."],
+              ["90+", "Lighthouse targets maintained on key pages."],
+            ].map(([value, text]) => (
+              <motion.div
+                key={value}
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="impact-card"
+              >
+                <p className="text-4xl font-semibold text-cyan-200">{value}</p>
+                <p className="mt-2 text-zinc-300">{text}</p>
               </motion.div>
             ))}
           </div>
