@@ -47,18 +47,30 @@ html {
   box-shadow: 0 0 14px rgba(34, 211, 238, 0.85);
 }
 
+.menu-dock {
+  grid-auto-flow: column;
+  gap: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+  border-radius: 999px;
+  padding: 0.22rem;
+}
+
 .menu-link {
   border-radius: 999px;
-  padding: 0.42rem 0.82rem;
-  color: rgb(212 212 216);
-  font-size: 0.86rem;
+  padding: 0.45rem 0.92rem;
+  color: rgb(228 228 231);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: all 150ms ease;
 }
 
 .menu-link:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(120deg, rgba(34, 211, 238, 0.25), rgba(192, 132, 252, 0.24));
   color: rgb(207 250 254);
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.24);
 }
 
 .nav-cta {
@@ -175,8 +187,7 @@ html {
 }
 
 main section {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 800px;
+  contain: layout paint style;
 }
 
 @media (max-width: 768px) {

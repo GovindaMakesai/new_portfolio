@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import Lenis from "@studio-freight/lenis";
 import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles, Send, BrainCircuit } from "lucide-react";
 import { fallbackProjects } from "./data/projects";
@@ -11,20 +10,7 @@ const words = ["MERN Engineer", "Experience Architect", "Interaction Designer"];
 const profilePhoto = "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80";
 const imageFallback = "https://picsum.photos/seed/fallback-poster/420/420";
 
-const useSmoothScroll = () => {
-  useEffect(() => {
-    const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
-};
-
 function App() {
-  useSmoothScroll();
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
   const [activeFilter, setActiveFilter] = useState<"All" | ProjectCategory>("All");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -98,7 +84,7 @@ function App() {
               <span className="brand-dot" />
               <p className="text-sm font-medium tracking-[0.16em] text-zinc-200">POOJA MOURYA</p>
             </div>
-            <div className="hidden items-center gap-2 lg:flex">
+            <div className="menu-dock hidden lg:grid">
               {[
                 ["Home", "#home"],
                 ["About", "#about"],
